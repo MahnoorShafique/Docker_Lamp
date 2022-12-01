@@ -14,7 +14,8 @@ side by side without conflicting with each other.
 
 ## Docker Commands:
  * docker ps
- (this will show running docker containers)
+ (this will show running docker containers)![myadmin](https://user-images.githubusercontent.com/68817446/205043484-187ddc0a-e1e5-49b5-83e1-faa853d5a4ce.png)
+
 
  * docker ps -a
  (this will show all containers including those that are stopped)
@@ -53,5 +54,6 @@ side by side without conflicting with each other.
 
 
 
+![Uploading myadmin.png…]()
 
 
