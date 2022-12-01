@@ -2,6 +2,7 @@ version : "3"
 
 services:
         db:
+            # pulling mysql image from dockerhub.
             image: mysql:latest
             environment:
                 MYSQL_DATABASE: lamp_docker
@@ -9,17 +10,20 @@ services:
                 MYSQL_PASSWORD: password
                 MYSQL_ALLOW_EMPTY_PASSWORD: 1
                 
-        wwww:
+        wwww: 
+        # for running this we need to run db service first.
               depends_on:
                   - db
              
               build:
-                   context: .
+                   context: . # dot specifies same directory has dockerfile for this service.
                    dockerfile: Dockerfile
               volumes:      #volume is connecting folder on local to folder on container
-                  - "./:/var/www/html"
+                  - "./:/var/www/html" # copy whatever is in local 
+                                       #working directory to /var/www/html in container.
               ports:
-                  - 8004:80
+              #first number 8004 is port number on our computer and 80 is port number on docker.
+                  - 8004:80 
                   - 443:443
 
         phpmyadmin:
