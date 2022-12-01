@@ -53,13 +53,15 @@ side by side without conflicting with each other.
 
 
 
-**Accessing mypgadmin on port 8001**
+**Accessing phpmyadmin on port 8001**
 
 ![myadmin](https://user-images.githubusercontent.com/68817446/205043484-187ddc0a-e1e5-49b5-83e1-faa853d5a4ce.png)
 
 **User Registration form:**
 
 ![form](https://user-images.githubusercontent.com/68817446/205044089-3211733c-148a-4102-bb71-984047889413.png)
+
 **Upon registration data is successfully stored in database.**
+
 ![db](https://user-images.githubusercontent.com/68817446/205044179-757c33d3-255f-46f8-8984-23d51d4f2bfa.png)
 
