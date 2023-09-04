@@ -1,7 +1,10 @@
-version : "3"
+version : "3" # version of docker compose
 
+networks:
+  mynet:
+# under services we list all containers
 services:
-        db:
+        db:  # db is the container's name part
             # pulling mysql image from dockerhub.
             image: mysql:latest
             environment:
@@ -10,21 +13,30 @@ services:
                 MYSQL_PASSWORD: password
                 MYSQL_ALLOW_EMPTY_PASSWORD: 1
                 #using blank as root password.
-                
+            volumes:
+              - db-data-vol:/var/lib/mysql
+            networks:
+              - mynet
+            # ports:
+            #  - 3307:3306
+
         wwww: 
         # for running this we need to run db service first.
               depends_on:
                   - db
-             
+             # rather than pulling from docker hub here i am using my apps build.
               build:
                    context: . # dot specifies same directory has dockerfile for this service.
                    dockerfile: Dockerfile
               volumes:      #volume is connecting folder on local to folder on container
-                  - "./:/var/www/html" # copy whatever is in local 
+                  - service-vol:/var/www/html/useraccounts # copy whatever is in local 
                                        #working directory to /var/www/html in container.
               ports:
               #first number 8004 is port number on our computer and 80 is port number on docker.
                   - 8004:80 
+              networks:
+                  - mynet
+                   
 
         phpmyadmin:
                   depends_on:
@@ -32,6 +44,12 @@ services:
                   image: phpmyadmin/phpmyadmin
                   ports:
                     - 8001:80
-                  environment:
-                    - PMA_HOST=db
-                    - PMA_PORT=3306
+
+                  networks:
+                      - mynet  
+volumes:
+    db-data-vol:
+    service-vol:
+     
+     
+           
